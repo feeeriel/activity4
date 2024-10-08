@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="row">
+        Search: <input class="form-control" style="margin-bottom:30px;" name="title" type="text" [(ngModel)]="title">
+                <ng-container *ngFor="let c of categories | filter:title">
+            <div class="col-md-4" style="margin-bottom: 20px;" appHighlightDirective>
+                <img [src]="c.image" [alt]="c.title" class="img-fluid h-50 w-75" (click)="afficheDescription(c.id)">
+                    <div class="col-md-4" style="margin-bottom: 20px;">
+                    <h3>{{ c.title | uppercase }}</h3>
+                    <button class="btn btn-primary" *ngIf="c.available==true"[routerLink]="['/products/',c.id]">Voir produits</button>
+                    <p *ngIf="!c.available">Catégorie non disponible</p>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
